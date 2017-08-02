@@ -22,7 +22,7 @@ RUN sed -i "s|.*root.*/app;|    root /app/wordpress;|i" /etc/nginx/conf.d/defaul
 
 # download and set the user/group pair for wordpress
 ADD https://wordpress.org/latest.tar.gz .
-COPY ./configs/wp-config.php /app/wordpress
+COPY ./configs/wp-config.php /app/wordpress/wp-config.php
 RUN chown -R www-data:www-data /app/wordpress
 
 
