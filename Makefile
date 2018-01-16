@@ -1,34 +1,40 @@
 .DEFAULT_GOAL := help
 
-NAME = wordpress
-VERSION = 1.0.0
-PORT = 80
+ORG = lacquerlabs
+NAME = service-wordpress
+IMAGE = $(ORG)/$(NAME)
+VERSION = 2.0.0
+PORT_INT = 80
+PORT_EXT = 8030
 
 build: ## Build it
-	docker build --pull --tag $(NAME) .
+	docker build -t $(IMAGE):latest .
 
 buildnocache: ## Build it without using cache
-	docker build --pull --tag $(NAME) --no-cache .
+	docker build --no-cache -t $(IMAGE):latest .
+
+tag: ## Tag it with $(VERSION)
+	docker tag $(IMAGE):latest $(IMAGE):$(VERSION)
 
 run: ## run it -v ${PWD}/code:/app/code
-	docker run -p $(PORT):$(PORT) --name $(NAME)_run --rm -id $(NAME)
-
-runvolume: ## run it with code volume attached
-	docker run -p $(PORT):$(PORT) --name $(NAME)_run -v ${PWD}/code:/app/code --rm -id $(NAME)
+	docker run -p $(PORT_EXT):$(PORT_INT) --name $(NAME)_run --rm -id $(IMAGE)
 
 runshell: ## run the container with an interactive shell
-	docker run -p $(PORT):$(PORT) --name $(NAME)_run --rm -it $(NAME) /bin/sh
+	docker run -p $(PORT_EXT):$(PORT_INT) --name $(NAME)_run --rm -it $(IMAGE) /bin/sh
 
 connect: ## connect to it
 	docker exec -it $(NAME)_run /bin/sh
 
-watchlog: ## connect to it
+watchlog: ## connect to it's logs
 	docker logs -f $(NAME)_run
 
 kill: ## kill it
 	docker kill $(NAME)_run
 
-it: build run connect kill ## do it all
+release: tag ## Create and push release to docker hub
+	@if ! docker images $(IMAGE) | awk '{ print $$2 }' | grep -q -F $(VERSION); then echo "$(NAME) version $(VERSION) is not yet built. Please run 'make build'"; false; fi
+	docker push $(IMAGE)
+	@echo "*** Don't forget to create a tag. git tag rel-$(VERSION) && git push origin rel-$(VERSION)"
 
 .PHONY: help
 
