@@ -1,4 +1,4 @@
-FROM lacquerlabs/service-webapp:latest
+FROM lacquerlabs/service-php7:latest
 
 # Wordpress Specific ENV Vars
 ENV DB_CHARSET			utf8mb4

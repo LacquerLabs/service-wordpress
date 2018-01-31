@@ -16,7 +16,7 @@ buildnocache: ## Build it without using cache
 tag: ## Tag it with $(VERSION)
 	docker tag $(IMAGE):latest $(IMAGE):$(VERSION)
 
-run: ## run it -v ${PWD}/code:/app/code
+run: ## run it
 	docker run -p $(PORT_EXT):$(PORT_INT) --name $(NAME)_run --rm -id $(IMAGE)
 
 runshell: ## run the container with an interactive shell
