@@ -1,6 +1,6 @@
 # service wordpress
 
-A wordpress container based on `lacquerlabs/service-webapp`
+A wordpress container based on `lacquerlabs/service-php7`
 
 Need better documentation of the ENV vars.
 
