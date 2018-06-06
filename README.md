@@ -18,7 +18,7 @@ Need better documentation of the ENV vars.
 * `WP_DEBUG` ... false
 * `WP_TABLE_PREFIX` ... wp2_
 
-## Make Options
+## All Make Options
 * `build` Build it
 * `buildnocache` Build it without using cache
 * `tag` tag the container with the current VERSION (used for doing a release)
