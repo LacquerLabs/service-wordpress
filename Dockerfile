@@ -17,7 +17,8 @@ ENV WP_TABLE_PREFIX		wp2_
 ENV WP_VERSION			4.8.1
 
 # install database and other needed packages for wordpress
-RUN apk --update --no-cache add php7-mysqli php7-zlib php7-imagick openssl
+# Remove php7-zlib as it now resides in php7
+RUN apk --update --no-cache add php7-mysqli php7-imagick openssl
 
 # fix root path for nginx
 # RUN sed -i "s|.*root.*/app;|    root /app/wordpress;|i" /etc/nginx/conf.d/default.conf
