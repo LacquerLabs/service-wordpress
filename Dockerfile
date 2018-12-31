@@ -1,8 +1,8 @@
-FROM lacquerlabs/service-php7:latest
+FROM lacquerlabs/service-php7:2.0.2
 
 # Wordpress Specific ENV Vars
-ENV DB_CHARSET			utf8mb4
-ENV DB_COLLATE			utf8_general_ci
+ENV DB_CHARSET					utf8mb4
+ENV DB_COLLATE					utf8_general_ci
 ENV WORDPRESS_DB_NAME			setme_WORDPRESS_DB_NAME
 ENV WORDPRESS_DB_USER			setme_WORDPRESS_DB_USER
 ENV WORDPRESS_DB_PASSWORD		setme_WORDPRESS_DB_PASSWORD
@@ -15,11 +15,11 @@ ENV WORDPRESS_AUTH_SALT			setme_WORDPRESS_AUTH_SALT
 ENV WORDPRESS_SECURE_AUTH_SALT	setme_WORDPRESS_SECURE_AUTH_SALT
 ENV WORDPRESS_LOGGED_IN_SALT	setme_WORDPRESS_LOGGED_IN_SALT
 ENV WORDPRESS_NONCE_SALT		setme_WORDPRESS_NONCE_SALT
-ENV WP_DEBUG			false
-ENV WP_TABLE_PREFIX		wp2_
+ENV WP_DEBUG					false
+ENV WP_TABLE_PREFIX				wp2_
 
-# ENV WP_VERSION			4.8.1
-ENV WP_VERSION			latest
+# ENV WP_VERSION				4.8.1
+ENV WP_VERSION					latest
 
 # install database and other needed packages for wordpress
 # Remove php7-zlib as it now resides in php7
