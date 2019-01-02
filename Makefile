@@ -3,7 +3,7 @@
 ORG = lacquerlabs
 NAME = service-wordpress
 IMAGE = $(ORG)/$(NAME)
-VERSION = 2.0.2
+VERSION = 2.0.3
 PORT_INT = 80
 PORT_EXT = 8030
 
@@ -34,7 +34,7 @@ kill: ## kill it
 release: tag ## Create and push release to docker hub
 	@if ! docker images $(IMAGE) | awk '{ print $$2 }' | grep -q -F $(VERSION); then echo "$(NAME) version $(VERSION) is not yet built. Please run 'make build'"; false; fi
 	docker push $(IMAGE)
-	@echo "*** Don't forget to create a tag. git tag rel-$(VERSION) && git push origin rel-$(VERSION)"
+	@echo "*** Don't forget to create a tag. git tag $(VERSION) && git push origin $(VERSION)"
 
 .PHONY: help
 

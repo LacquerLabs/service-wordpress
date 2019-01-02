@@ -1,4 +1,4 @@
-FROM lacquerlabs/service-php7:2.0.2
+FROM lacquerlabs/service-php7:2.0.3
 
 # Wordpress Specific ENV Vars
 ENV DB_CHARSET					utf8mb4
@@ -29,9 +29,6 @@ RUN apk --update --no-cache add nginx php7-fpm openssl dumb-init tzdata \
 	php7-imagick php7-json php7-mbstring php7-mysqli \
 	php7-openssl php7-posix php7-simplexml php7-sockets \
 	php7-ssh2 php7-tokenizer php7-xml php7-xmlreader
-
-# fix root path for nginx
-# RUN sed -i "s|.*root.*/app;|    root /app/wordpress;|i" /etc/nginx/conf.d/default.conf
 
 # copy wp-config.php to wordpress directory, will be owned by root.
 COPY ./configs/wp-config.php /app/wp-config.php
