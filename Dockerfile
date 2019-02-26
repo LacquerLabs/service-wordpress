@@ -1,4 +1,4 @@
-FROM lacquerlabs/service-php7:2.0.10
+FROM lacquerlabs/service-php7:2.0.11
 
 # Wordpress Specific ENV Vars
 ENV DB_CHARSET					utf8mb4
@@ -35,13 +35,6 @@ RUN apk --update --no-cache add nginx php7-fpm openssl dumb-init tzdata \
 # copy wp-config.php to wordpress directory, will be owned by root.
 COPY ./configs/wp-config.php /app/wp-config.php
 
-# download and set the user/group pair for wordpress
-RUN wget -O /tmp/wordpress.tgz https://wordpress.org/wordpress-${WP_VERSION}.tar.gz && \
-	tar -zxvf /tmp/wordpress.tgz --directory /app --strip-components=1 && \
-	apk del openssl && \
-	rm /tmp/wordpress.tgz
-
-COPY ./configs/wp-config.php /app/wp-config.php
 # download and set the user/group pair for wordpress
 RUN wget -O /tmp/wordpress.tgz https://wordpress.org/wordpress-${WP_VERSION}.tar.gz && \
 	tar -zxvf /tmp/wordpress.tgz --directory /app --strip-components=1 && \
