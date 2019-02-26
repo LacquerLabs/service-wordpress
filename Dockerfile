@@ -26,7 +26,7 @@ USER root
 # install database and other needed packages for wordpress
 # Remove php7-zlib as it now resides in php7
 RUN apk --update --no-cache add nginx php7-fpm openssl dumb-init tzdata \
-	php7-mysqli php7-curl php7-dom php7-exif \
+	php7-ctype php7-mysqli php7-curl php7-dom php7-exif \
 	php7-ftp php7-gd php7-gmagick php7-iconv \
 	php7-imagick php7-json php7-mbstring php7-mysqli \
 	php7-openssl php7-posix php7-simplexml php7-sockets \
