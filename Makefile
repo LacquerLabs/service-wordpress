@@ -3,9 +3,9 @@
 ORG = lacquerlabs
 NAME = service-wordpress
 IMAGE = $(ORG)/$(NAME)
-VERSION = 2.0.3
-PORT_INT = 80
-PORT_EXT = 8030
+VERSION = 2.0.10
+PORT_INT = 8080
+PORT_EXT = 8080
 
 build: ## Build it
 	docker build -t $(IMAGE):latest .

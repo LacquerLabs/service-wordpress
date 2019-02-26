@@ -1,4 +1,4 @@
-FROM lacquerlabs/service-php7:2.0.3
+FROM lacquerlabs/service-php7:2.0.10
 
 # Wordpress Specific ENV Vars
 ENV DB_CHARSET					utf8mb4
@@ -20,6 +20,8 @@ ENV WP_TABLE_PREFIX				wp2_
 
 # ENV WP_VERSION				4.8.1
 ENV WP_VERSION					latest
+
+USER root
 
 # install database and other needed packages for wordpress
 # Remove php7-zlib as it now resides in php7
@@ -45,5 +47,6 @@ RUN wget -O /tmp/wordpress.tgz https://wordpress.org/wordpress-${WP_VERSION}.tar
 	tar -zxvf /tmp/wordpress.tgz --directory /app --strip-components=1 && \
 	apk del openssl && \
 	rm /tmp/wordpress.tgz && \
-	chown -R www-data:www-data /app
+	chown -R nginx:www-data /app
 
+USER nginx
