@@ -1,4 +1,4 @@
-FROM lacquerlabs/service-php7:2.0.11
+FROM lacquerlabs/service-php7:2.0.12
 
 # Wordpress Specific ENV Vars
 ENV DB_CHARSET					utf8mb4
