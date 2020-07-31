@@ -3,7 +3,7 @@
 ORG = lacquerlabs
 NAME = service-wordpress
 IMAGE = $(ORG)/$(NAME)
-VERSION = 2.0.13
+VERSION = 2.0.14
 PORT_INT = 8080
 PORT_EXT = 8080
 
